@@ -56,45 +56,37 @@ namespace Masked.Android.Controls
 
         private void Native_KeyPress(object sender, KeyEventArgs e)
         {
-            if (source.Text.Length == source.Mask.Length)
-                e.Handled = false;
+            if (e.Event.Action == global::Android.Views.KeyEventActions.Up)
+            {
+                var textLength = native.Text.Length;
+                if (e.KeyCode == Keycode.Back || e.KeyCode == Keycode.DpadLeft)
+                {
+                    if (textLength > 0 && source.CursorPosition > 0)
+                        native.SetSelection(source.CursorPosition - 1, source.CursorPosition - 1);
+                }
+                else if (e.KeyCode == Keycode.Forward || e.KeyCode == Keycode.DpadRight)
+                {
+                    if (textLength > 0 && source.CursorPosition < textLength)
+                        native.SetSelection(source.CursorPosition + 1, source.CursorPosition + 1);
+                }
+
+            }
         }
 
-        void Native_AfterTextChanged(object sender, global::Android.Text.AfterTextChangedEventArgs e)
+        void Native_AfterTextChanged(object sender, AfterTextChangedEventArgs e)
         {
             var startCursorPosition = source.CursorPosition;
             var startText = source.Text;
             var startTextLengthDifference = TextLengthDifference;
 
-            var maskedText = source.ApplyMask(source.Text, source.Mask);
+            var maskedText = source.ApplyMask(source.Text);
             if (maskedText != source.Text)
             {
                 native.Text = maskedText;
-                if (startText.Length <= source.Mask.Length)
-                {
-                    var newCursorPosition = DefineNextCursorPosition(startCursorPosition, startTextLengthDifference, maskedText);
-                    native.SetSelection(newCursorPosition, newCursorPosition);
-                }
-                else
-                {
-                    native.SetSelection(startCursorPosition, startCursorPosition);
-                }
+
+                int newCursorPosition = source.GetNewCursorPosition(startText, maskedText, startCursorPosition, startTextLengthDifference);
+                native.SetSelection(newCursorPosition, newCursorPosition);
             }
-        }
-
-        int DefineNextCursorPosition(int startCursorPosition, int startTextLengthDifference, string maskedText)
-        {
-            var actionPositionChange = (startTextLengthDifference > 0 ? 1 : -1);
-            var newCursorPosition = startCursorPosition + actionPositionChange;
-
-            if(newCursorPosition - 1 == maskedText.Length)
-                return newCursorPosition + actionPositionChange;
-
-            var nextCharIfSameAction = maskedText[newCursorPosition - 1];
-            if(!char.IsNumber(nextCharIfSameAction) && !char.IsLetter(nextCharIfSameAction))
-                newCursorPosition += actionPositionChange;
-
-            return newCursorPosition;
         }
     }
 }

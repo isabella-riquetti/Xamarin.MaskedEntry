@@ -19,28 +19,33 @@ namespace Masked.Controls
             {
                 SetValue(MaskProperty, value);
                 SetMaskPositions();
-                PureMask = Regex.Replace(Mask, @"\W", string.Empty);
             }
         }
 
-        public string PureText { get; set; }
-        public string PureMask { get; set; }
-
-        public string ApplyMask(string text, string mask)
+        public string ApplyMask(string text)
         {
             RemoveOverflow(ref text);
-            PureText = Regex.Replace(text, @"\W", "");
+
             string formatedText;
 
-            formatedText = PureText;
-            if (string.IsNullOrWhiteSpace(formatedText) || _maskPositions == null)
+            formatedText = Regex.Replace(text, @"\W", "");
+            if ( _maskPositions == null || string.IsNullOrEmpty(formatedText))
                 return formatedText;
 
             foreach (var position in _maskPositions)
-                if (formatedText.Length >= position.Key + 1)           
+                if (formatedText.Length >= position.Key)           
                     formatedText = formatedText.Insert(position.Key, position.Value.ToString());
 
             return formatedText;
+        }
+
+        public bool CheckForUnknown(string text)
+        {
+            var acceptedSpecialChars = _maskPositions.GroupBy(p => p.Value).Select(p => p.Key);
+            if (text.Any(c => acceptedSpecialChars.All(a => a != c) && !IsComomCharacter(c)))
+                return true;
+            else
+                return false;
         }
 
         public void RemoveOverflow(ref string text)
@@ -65,6 +70,33 @@ namespace Masked.Controls
                     positions.Add(i, Mask[i]);
 
             _maskPositions = positions;
+        }
+
+        public bool IsComomCharacter(char character)
+        {
+            return char.IsNumber(character) || char.IsLetter(character);
+        }
+
+        public int GetNewCursorPosition(string startText, string maskedText, int startCursorPosition, int startTextLengthDifference)
+        {
+            if (startText.Length <= Mask.Length && !CheckForUnknown(startText))
+            {
+                if (startTextLengthDifference > 0)
+                {
+                    var charDifference = Math.Abs(startText.Length - maskedText.Length);
+                    var newCursorPosition = startCursorPosition + ((charDifference > 0 ? charDifference : 1) * startTextLengthDifference);
+
+                    if ((startText.Length == 1 && !IsComomCharacter(maskedText.First())) || !IsComomCharacter(maskedText[newCursorPosition])
+                        || newCursorPosition == maskedText.Length || (!IsComomCharacter(maskedText.Last()) && newCursorPosition == maskedText.Length - 1))
+                        return newCursorPosition + startTextLengthDifference;
+                }
+
+                return startCursorPosition + startTextLengthDifference;
+            }
+            else
+            {
+                return startCursorPosition;
+            }
         }
     }
 }

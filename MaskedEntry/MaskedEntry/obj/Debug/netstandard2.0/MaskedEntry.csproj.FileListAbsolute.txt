@@ -21,3 +21,15 @@ C:\Users\isabella.riquetti\source\repos\MaskedEntry - Copia\MaskedEntry\MaskedEn
 C:\Users\isabella.riquetti\source\repos\MaskedEntry - Copia\MaskedEntry\MaskedEntry\bin\Debug\netstandard2.0\MaskedEntry.pdb
 C:\Users\isabella.riquetti\source\repos\MaskedEntry - Copia\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\isabella.riquetti\source\repos\MaskedEntry - Copia\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\MaskedEntry.csprojAssemblyReference.cache
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\bin\Debug\netstandard2.0\MaskedEntry.deps.json
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\bin\Debug\netstandard2.0\MaskedEntry.dll
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\bin\Debug\netstandard2.0\MaskedEntry.pdb
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\MaskedEntry.csprojAssemblyReference.cache
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\MaskedEntry.csproj.CoreCompileInputs.cache
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\MaskedEntry.AssemblyInfoInputs.cache
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\MaskedEntry.AssemblyInfo.cs
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\MaskedEntry.dll
+C:\Users\isabella.riquetti\Desktop\Xamarin.MaskedEntry\MaskedEntry\MaskedEntry\obj\Debug\netstandard2.0\MaskedEntry.pdb
