@@ -2,3 +2,9 @@
 MaskedEntry/MaskedEntry/bin/
 
 \.vs/
+
+MaskedEntry/MaskedEntry/obj/
+
+MaskedEntry/MaskedEntry\.Android/bin/
+
+MaskedEntry/MaskedEntry\.Android/obj/
